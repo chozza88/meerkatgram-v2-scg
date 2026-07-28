@@ -29,6 +29,11 @@ spring:
               uri: ${AUTH_SERVICE_URI}
               predicates:
                 - Path=${AUTH_SERVICE_PREDICATE}
+            - id: ${POST_SERVICE_NAME}
+              uri: ${POST_SERVICE_URI}
+              predicates:
+                - Path=${POST_SERVICE_PREDICATE}
+
 
             # Open API UI가 각 하위 서비스와 스펙을 GateWay가 origin으로 받아와서 출력하도록 설정
             - id: ${AUTH_SERVICE_NAME}-docs
@@ -37,6 +42,12 @@ spring:
                 - Path=/${AUTH_SERVICE_NAME}${AUTH_SERVICE_OPEN_API_PATH}
               filters:
                 - RewritePath=/${AUTH_SERVICE_NAME}${AUTH_SERVICE_OPEN_API_PATH}, ${AUTH_SERVICE_OPEN_API_PATH}
+            - id: ${POST_SERVICE_NAME}-docs
+              uri: ${POST_SERVICE_URI}
+              predicates:
+                - Path=/${POST_SERVICE_NAME}${POST_SERVICE_OPEN_API_PATH}
+              filters:
+                - RewritePath=/${POST_SERVICE_NAME}${POST_SERVICE_OPEN_API_PATH}, ${POST_SERVICE_OPEN_API_PATH}
 
 # Open API
 springdoc:
@@ -45,6 +56,8 @@ springdoc:
     urls:
       - name: ${AUTH_SERVICE_NAME}
         url: /${AUTH_SERVICE_NAME}${AUTH_SERVICE_OPEN_API_PATH}
+      - name: ${POST_SERVICE_NAME}
+        url: /${POST_SERVICE_NAME}${AUTH_SERVICE_OPEN_API_PATH}
 
 #jwt
 jwt:
