@@ -17,10 +17,10 @@ public record GlobalResponseDTO<T>(
     }
 
     public static <T> GlobalResponseDTO<T> success(T data){
-        return GlobalResponseDTO.<T>from(CustomResponseCode.SUCCESS, data);
+        return GlobalResponseDTO.<T>from(CustomResponseCode.SCG_SUCCESS, data);
     }
 
     public static GlobalResponseDTO<Void> success(){
-        return GlobalResponseDTO.<Void>from(CustomResponseCode.SUCCESS);
+        return GlobalResponseDTO.<Void>from(CustomResponseCode.SCG_SUCCESS);
     }
 }
